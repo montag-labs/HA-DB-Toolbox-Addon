@@ -10,8 +10,10 @@ arch:
 startup: application
 boot: auto
 init: false
+legacy: true
 ingress: true
 ingress_port: 8099
+ingress_entry: "/api/docs"
 panel_icon: "mdi:database-search"
 hassio_role: default
 map:
