@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.7
+
+- Add a strictly read-only Home Assistant registry and Recorder statistics inventory.
+- Return aggregate counts only; registry identifiers, database rows, and tokens stay internal.
+- Support Home Assistant child devices and the current Recorder `mean_type` metadata.
+
 ## 0.0.6
 
 - Store the app-owned installation identity in Home Assistant's official writable `addon_config` mapping.
