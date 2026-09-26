@@ -1,6 +1,6 @@
 name: "HA DB Toolbox"
 description: "Safe analysis and migration tooling for Home Assistant history data"
-version: "0.0.5"
+version: "0.0.6"
 slug: "ha_db_toolbox"
 url: "https://github.com/montag-labs/HA-DB-Toolbox-Addon"
 image: "ghcr.io/montag-labs/ha-db-toolbox"
@@ -18,8 +18,10 @@ hassio_role: default
 map:
   - type: homeassistant_config
     read_only: true
+  - type: addon_config
+    read_only: false
 environment:
-  HA_DB_TOOL_DATA_PATH: /data
+  HA_DB_TOOL_DATA_PATH: /config
   HA_DB_TOOL_HA_CONFIG_PATH: /homeassistant
 options: {}
 schema: false
