@@ -1,6 +1,6 @@
 name: "HA DB Toolbox"
 description: "Safe analysis and migration tooling for Home Assistant history data"
-version: "0.0.1"
+version: "0.0.2"
 slug: "ha_db_toolbox"
 url: "https://github.com/montag-labs/HA-DB-Toolbox-Addon"
 image: "ghcr.io/montag-labs/ha-db-toolbox"
@@ -13,7 +13,6 @@ init: false
 legacy: true
 ingress: true
 ingress_port: 8099
-ingress_entry: "/api/docs"
 panel_icon: "mdi:database-search"
 hassio_role: default
 map:
