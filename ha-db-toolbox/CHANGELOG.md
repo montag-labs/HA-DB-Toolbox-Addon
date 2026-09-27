@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.12
+
+- Add a strictly bounded read-only Recorder probe using Home Assistant's History REST and Recorder WebSocket APIs.
+- Limit the probe to five entities, five statistic IDs, one hour, and fixed response-size/time limits.
+- Return aggregate counts and advertised Recorder capabilities only; raw IDs, states, attributes, and values stay internal.
+- Keep all write-capable Recorder commands blocked by the Core allowlist.
+
 ## 0.0.11
 
 - Enforce the custom AppArmor profile after the complete DEV-HA audit produced no new policy exceptions.

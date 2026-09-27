@@ -8,6 +8,7 @@ This private proof-of-concept wrapper runs the HA DB Toolbox core image as a Hom
 - Queries the documented Supervisor `/info` endpoint when available.
 - Exposes only shortened, domain-separated identity fingerprints.
 - Performs no database cleanup, migration, licensing, or telemetry.
+- Provides a bounded one-hour read-only Recorder probe through official Home Assistant APIs; it samples at most five entities and five statistic IDs and returns aggregate counts only.
 
 ## Persistent app identity
 
@@ -28,6 +29,8 @@ ha host logs -t audit -n 1000
 Look for entries containing `apparmor="DENIED"` and the `ha_db_toolbox` profile. The `journalctl _TRANSPORT="audit" -g 'apparmor="DENIED"'` variant is only available from a direct Home Assistant OS host shell, not from a terminal app or the `ha >` CLI prompt.
 
 Any denial is a compatibility or security event: stop the affected operation, capture the complete audit record, and do not broaden the profile without understanding and testing the exact access requirement.
+
+The Recorder probe does not access the SQLite file or execute Recorder write actions. Direct SQL access and all write-capable Recorder commands remain blocked.
 
 The Home Assistant configuration remains a separate read-only mount at `/homeassistant`.
 
