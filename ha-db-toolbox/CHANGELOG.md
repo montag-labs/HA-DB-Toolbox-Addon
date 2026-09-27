@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.16
+
+- Permit `dac_override` only during the root bootstrap so the protected
+  container can initialize its own Supervisor-provided writable mappings.
+  The service then immediately drops to UID/GID 10001; no Home Assistant
+  configuration folder is mounted.
+
 ## 0.0.15
 
 - Remove the unnecessary `homeassistant_config` mount. The internal Core UUID

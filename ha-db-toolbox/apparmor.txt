@@ -9,6 +9,9 @@ profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted) {
 
   # The entrypoint drops from root to the dedicated runtime user.
   capability chown,
+  # Required only while the root bootstrap initializes the app-owned writable
+  # mappings. The service immediately drops to UID/GID 10001 afterwards.
+  capability dac_override,
   capability setgid,
   capability setuid,
 
