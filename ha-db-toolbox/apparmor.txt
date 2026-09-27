@@ -26,10 +26,10 @@ profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted) {
   /app/ r,
   /app/** r,
 
-  # Explicitly mapped application data and Home Assistant configuration.
+  # Explicitly mapped application data only. Home Assistant configuration is
+  # not mounted; all HA data is read through documented Supervisor/Core APIs.
   /config/{,**} rwk,
   /data/{,**} rwk,
-  /homeassistant/{,**} r,
 
   # Runtime discovery, DNS, entropy, and temporary files.
   /etc/group r,

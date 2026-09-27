@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.15
+
+- Remove the unnecessary `homeassistant_config` mount. The internal Core UUID
+  is not a supported app contract; registry and Recorder reads already use
+  documented APIs.
+- Reserve `/config` exclusively for the official writable `addon_config`
+  mapping, eliminating the restore-time mount collision with `/homeassistant`.
+
 ## 0.0.14
 
 - Keep an existing restored `installation-id` untouched during startup. The

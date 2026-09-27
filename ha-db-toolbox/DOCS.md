@@ -4,7 +4,6 @@ This private proof-of-concept wrapper runs the HA DB Toolbox core image as a Hom
 
 ## Current scope
 
-- Reads the Home Assistant configuration mount without write access.
 - Queries the documented Supervisor `/info` endpoint when available.
 - Exposes only shortened, domain-separated identity fingerprints.
 - Performs no database cleanup, migration, licensing, or telemetry.
@@ -12,7 +11,7 @@ This private proof-of-concept wrapper runs the HA DB Toolbox core image as a Hom
 
 ## Persistent app identity
 
-The app uses Home Assistant's official writable `addon_config` mapping. Home Assistant stores this folder below `/addon_configs/{REPO}_ha_db_toolbox` on the host and mounts it explicitly at `/config` inside the app container. The separate Home Assistant configuration mapping is read-only and mounted explicitly at `/homeassistant`.
+The app uses Home Assistant's official writable `addon_config` mapping. Home Assistant stores this folder below `/addon_configs/{REPO}_ha_db_toolbox` on the host and mounts it at `/config` inside the app container. The app does not mount the Home Assistant configuration folder: the internal Core UUID is not a supported app contract, and all required HA reads use documented Supervisor/Core APIs.
 
 The file `/config/installation-id` is managed by the app. Do not edit or delete it unless you intentionally want to reset the app identity. App version 0.0.6 migrates a valid legacy identity from `/data` when the config identity does not exist and never overwrites an existing config identity.
 
@@ -31,7 +30,5 @@ Look for entries containing `apparmor="DENIED"` and the `ha_db_toolbox` profile.
 Any denial is a compatibility or security event: stop the affected operation, capture the complete audit record, and do not broaden the profile without understanding and testing the exact access requirement.
 
 The Recorder probe does not access the SQLite file or execute Recorder write actions. Direct SQL access and all write-capable Recorder commands remain blocked.
-
-The Home Assistant configuration remains a separate read-only mount at `/homeassistant`.
 
 The container image must be published by the private core repository before this app can be installed.
