@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.10
+
+- Add the four read-only paths observed during the v0.0.9 AppArmor audit.
+- Keep AppArmor in complain mode for one final DEV-HA verification before enforcement.
+
 ## 0.0.9
 
 - Restrict app HTTP access to the official Home Assistant ingress proxy; only the local container health check bypasses this restriction.
