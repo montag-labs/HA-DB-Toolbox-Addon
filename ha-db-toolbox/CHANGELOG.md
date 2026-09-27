@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.14
+
+- Keep an existing restored `installation-id` untouched during startup. The
+  app still prepares its own config directory for new identities, but no
+  longer requires ownership-changing access to a backup-restored identity.
+
 ## 0.0.13
 
 - Explicitly map the official read-only `homeassistant_config` folder to
