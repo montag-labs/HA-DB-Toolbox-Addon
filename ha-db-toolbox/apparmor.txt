@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted,complain) {
+profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # The web API listens locally and calls the Supervisor/Core proxies.

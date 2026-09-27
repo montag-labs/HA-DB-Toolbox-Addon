@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.11
+
+- Enforce the custom AppArmor profile after the complete DEV-HA audit produced no new policy exceptions.
+- Retain only the narrowly scoped runtime, ingress, Supervisor/Core proxy, and mapped-storage permissions validated in 0.0.10.
+
 ## 0.0.10
 
 - Add the four read-only paths observed during the v0.0.9 AppArmor audit.
