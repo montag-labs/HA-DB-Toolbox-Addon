@@ -19,11 +19,13 @@ The file `/config/installation-id` is managed by the app. Do not edit or delete 
 
 The app accepts UI and API traffic only from Home Assistant's ingress proxy (`172.30.32.2`). The local `/api/health` endpoint remains available to the container health check. Forwarding headers are not trusted for this decision.
 
-The custom AppArmor profile is intentionally in `complain` mode while it is validated on DEV-HA. Review its audit events on the Home Assistant host with:
+The custom AppArmor profile is intentionally in `complain` mode while it is validated on DEV-HA. From a Home Assistant terminal app, retrieve the host audit journal through the Supervisor CLI with:
 
 ```shell
-journalctl _TRANSPORT="audit" -g 'apparmor="ALLOWED"'
+ha host logs -t audit -n 1000
 ```
+
+Look for entries containing both `apparmor="ALLOWED"` and the `ha_db_toolbox` profile. The `journalctl _TRANSPORT="audit" -g 'apparmor="ALLOWED"'` variant is only available from a direct Home Assistant OS host shell, not from a terminal app or the `ha >` CLI prompt.
 
 Exercise app startup, shutdown, identity, inventory, and ingress before removing the `complain` flag in the next hardening release.
 
