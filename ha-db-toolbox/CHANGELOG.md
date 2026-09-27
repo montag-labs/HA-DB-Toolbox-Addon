@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.13
+
+- Explicitly map the official read-only `homeassistant_config` folder to
+  `/homeassistant` and the app's writable `addon_config` folder to `/config`.
+- Fix startup after backup/restore by preparing the target config directory
+  before migrating a legacy identity and only correcting ownership of the
+  app-owned identity file.
+
 ## 0.0.12
 
 - Add a strictly bounded read-only Recorder probe using Home Assistant's History REST and Recorder WebSocket APIs.
