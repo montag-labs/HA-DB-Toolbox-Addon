@@ -1,0 +1,44 @@
+#include <tunables/global>
+
+profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted,complain) {
+  #include <abstractions/base>
+
+  # The web API listens locally and calls the Supervisor/Core proxies.
+  network inet stream,
+  network inet6 stream,
+
+  # The entrypoint drops from root to the dedicated runtime user.
+  capability chown,
+  capability setgid,
+  capability setuid,
+
+  # Docker and the Supervisor may stop the process gracefully.
+  signal (receive),
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # Python runtime and installed application.
+  /usr/local/bin/python* rix,
+  /usr/local/bin/uvicorn rix,
+  /usr/local/lib/** mr,
+  /usr/lib/** mr,
+  /lib/** mr,
+  /app/** r,
+
+  # Explicitly mapped application data and Home Assistant configuration.
+  /config/{,**} rwk,
+  /data/{,**} rwk,
+  /homeassistant/{,**} r,
+
+  # Runtime discovery, DNS, entropy, and temporary files.
+  /etc/group r,
+  /etc/host.conf r,
+  /etc/hosts r,
+  /etc/nsswitch.conf r,
+  /etc/passwd r,
+  /etc/resolv.conf r,
+  /proc/{,**} r,
+  /sys/devices/system/cpu/{,**} r,
+  /dev/null rw,
+  /dev/urandom r,
+  /tmp/{,**} rwk,
+}

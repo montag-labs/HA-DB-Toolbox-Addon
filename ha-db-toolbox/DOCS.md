@@ -15,6 +15,18 @@ The app uses Home Assistant's official writable `addon_config` mapping. Home Ass
 
 The file `/config/installation-id` is managed by the app. Do not edit or delete it unless you intentionally want to reset the app identity. App version 0.0.6 migrates a valid legacy identity from `/data` when the config identity does not exist and never overwrites an existing config identity.
 
+## Security validation in 0.0.9
+
+The app accepts UI and API traffic only from Home Assistant's ingress proxy (`172.30.32.2`). The local `/api/health` endpoint remains available to the container health check. Forwarding headers are not trusted for this decision.
+
+The custom AppArmor profile is intentionally in `complain` mode while it is validated on DEV-HA. Review its audit events on the Home Assistant host with:
+
+```shell
+journalctl _TRANSPORT="audit" -g 'apparmor="ALLOWED"'
+```
+
+Exercise app startup, shutdown, identity, inventory, and ingress before removing the `complain` flag in the next hardening release.
+
 The Home Assistant configuration remains a separate read-only mount at `/homeassistant`.
 
 The container image must be published by the private core repository before this app can be installed.

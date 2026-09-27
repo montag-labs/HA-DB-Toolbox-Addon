@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.9
+
+- Restrict app HTTP access to the official Home Assistant ingress proxy; only the local container health check bypasses this restriction.
+- Add a custom AppArmor profile in audit-only complain mode for validation on DEV-HA before enforcement.
+- Remove legacy image mode and publish architecture-specific, signed images with the official Home Assistant builder actions.
+
 ## 0.0.8
 
 - Enable the minimal `homeassistant_api` permission required by the official Core WebSocket proxy.
