@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.17
+
+- Add a read-only compatibility preflight. It reads the documented Home
+  Assistant Core version through the existing Core API proxy and compares it
+  with the locally shipped, fail-closed compatibility matrix.
+- Return only version, compatibility status, stable blocker codes and a
+  shortened report digest. No database operation or write endpoint exists.
+- Align the Core package, Health API and Add-on release version on `0.0.17`.
+
 ## 0.0.16
 
 - Permit `dac_override` only during the root bootstrap so the protected
