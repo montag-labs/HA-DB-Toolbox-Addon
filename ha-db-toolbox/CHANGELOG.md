@@ -2,7 +2,13 @@
 
 ## 0.0.18
 
-- DEV-HA test build: add a read-only `homeassistant_config` mapping and a
+- Rename the internal Core package to `ha_db_toolbox` and the runtime
+  environment variables to `HA_DB_TOOLBOX_*`. The Add-on now sets
+  `HA_DB_TOOLBOX_DATA_PATH` and `HA_DB_TOOLBOX_INGRESS_ONLY`.
+- Installation identity, fingerprints and the `/config` data location are
+  unchanged; no re-binding or data migration is needed.
+- Requires Core image `0.0.18`; older images ignore the new variable names.
+- DEV-HA test branch only (not for main): add a read-only `homeassistant_config` mapping and a
   matching AppArmor rule limited to `home-assistant_v2.db` and its WAL/SHM
   files. The Core image 0.0.18 exposes `/api/poc/sqlite`, which returns only
   aggregate metadata. Nothing is written; direct SQL writes stay blocked.
