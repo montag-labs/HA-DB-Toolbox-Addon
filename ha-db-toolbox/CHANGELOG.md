@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.20
+
+- DEV-HA test branch only (not for main): Core 0.0.20 pairs numbered entities
+  (for example `eingang_0` / `eingang_1`) reliably and reports disabled
+  entities without stored history as "nothing to transfer".
+
 ## 0.0.19
 
 - DEV-HA test branch only (not for main): Core 0.0.19 adds a read-only check
