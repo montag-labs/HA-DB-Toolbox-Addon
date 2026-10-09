@@ -20,7 +20,7 @@ map:
     read_only: false
     path: /config
 environment:
-  HA_DB_TOOL_DATA_PATH: /config
-  HA_DB_TOOL_INGRESS_ONLY: "true"
+  HA_DB_TOOLBOX_DATA_PATH: /config
+  HA_DB_TOOLBOX_INGRESS_ONLY: "true"
 options: {}
 schema: false
