@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.20
+
+- DEV-HA test branch only (not for main): Core 0.0.20 pairs numbered entities
+  (for example `eingang_0` / `eingang_1`) reliably and reports disabled
+  entities without stored history as "nothing to transfer".
+
+## 0.0.19
+
+- DEV-HA test branch only (not for main): Core 0.0.19 adds a read-only check
+  that compares the entities of an old and a new device and counts stored
+  history rows (start page, "Uebernahme pruefen"). Nothing is copied or
+  changed. Keeps the read-only `homeassistant_config` mapping from the test
+  build 0.0.18.
+
 ## 0.0.18
 
 - Rename the internal Core package to `ha_db_toolbox` and the runtime
@@ -8,6 +22,10 @@
 - Installation identity, fingerprints and the `/config` data location are
   unchanged; no re-binding or data migration is needed.
 - Requires Core image `0.0.18`; older images ignore the new variable names.
+- DEV-HA test branch only (not for main): add a read-only `homeassistant_config` mapping and a
+  matching AppArmor rule limited to `home-assistant_v2.db` and its WAL/SHM
+  files. The Core image 0.0.18 exposes `/api/poc/sqlite`, which returns only
+  aggregate metadata. Nothing is written; direct SQL writes stay blocked.
 
 ## 0.0.17
 
