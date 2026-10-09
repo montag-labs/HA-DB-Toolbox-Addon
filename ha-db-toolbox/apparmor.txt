@@ -34,6 +34,11 @@ profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted) {
   /config/{,**} rwk,
   /data/{,**} rwk,
 
+  # DEV-HA test build: read-only probe of the Recorder SQLite file. No other
+  # file in the Home Assistant configuration directory is accessible.
+  /homeassistant/ r,
+  /homeassistant/home-assistant_v2.db{,-wal,-shm} rmk,
+
   # Runtime discovery, DNS, entropy, and temporary files.
   /etc/group r,
   /etc/host.conf r,

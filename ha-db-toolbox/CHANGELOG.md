@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.18
+
+- DEV-HA test build: add a read-only `homeassistant_config` mapping and a
+  matching AppArmor rule limited to `home-assistant_v2.db` and its WAL/SHM
+  files. The Core image 0.0.18 exposes `/api/poc/sqlite`, which returns only
+  aggregate metadata. Nothing is written; direct SQL writes stay blocked.
+
 ## 0.0.17
 
 - Add a read-only compatibility preflight. It reads the documented Home

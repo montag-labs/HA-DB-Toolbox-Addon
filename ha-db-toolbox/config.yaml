@@ -1,6 +1,6 @@
 name: "HA DB Toolbox"
 description: "Safe analysis and migration tooling for Home Assistant history data"
-version: "0.0.17"
+version: "0.0.18"
 slug: "ha_db_toolbox"
 url: "https://github.com/montag-labs/HA-DB-Toolbox-Addon"
 image: "ghcr.io/montag-labs/ha-db-toolbox"
@@ -19,6 +19,10 @@ map:
   - type: addon_config
     read_only: false
     path: /config
+  # DEV-HA test build only: read-only view of the Recorder SQLite file.
+  - type: homeassistant_config
+    read_only: true
+    path: /homeassistant
 environment:
   HA_DB_TOOLBOX_DATA_PATH: /config
   HA_DB_TOOLBOX_INGRESS_ONLY: "true"
