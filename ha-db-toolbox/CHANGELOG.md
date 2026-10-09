@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.18
+
+- Rename the internal Core package to `ha_db_toolbox` and the runtime
+  environment variables to `HA_DB_TOOLBOX_*`. The Add-on now sets
+  `HA_DB_TOOLBOX_DATA_PATH` and `HA_DB_TOOLBOX_INGRESS_ONLY`.
+- Installation identity, fingerprints and the `/config` data location are
+  unchanged; no re-binding or data migration is needed.
+- Requires Core image `0.0.18`; older images ignore the new variable names.
+
 ## 0.0.17
 
 - Add a read-only compatibility preflight. It reads the documented Home
