@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.19
+
+- DEV-HA test branch only (not for main): Core 0.0.19 adds a read-only check
+  that compares the entities of an old and a new device and counts stored
+  history rows (start page, "Uebernahme pruefen"). Nothing is copied or
+  changed. Keeps the read-only `homeassistant_config` mapping from the test
+  build 0.0.18.
+
 ## 0.0.18
 
 - Rename the internal Core package to `ha_db_toolbox` and the runtime
