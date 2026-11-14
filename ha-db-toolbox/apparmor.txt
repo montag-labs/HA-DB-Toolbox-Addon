@@ -29,10 +29,15 @@ profile ha_db_toolbox flags=(attach_disconnected,mediate_deleted) {
   /app/ r,
   /app/** r,
 
-  # Explicitly mapped application data only. Home Assistant configuration is
-  # not mounted; all HA data is read through documented Supervisor/Core APIs.
+  # App-owned writable storage.
   /config/{,**} rwk,
   /data/{,**} rwk,
+
+  # The Home Assistant configuration is mapped read-only. Of that folder only
+  # the Recorder SQLite file and its WAL/SHM companions are readable; every
+  # other file stays inaccessible. No write permission is granted.
+  /homeassistant/ r,
+  /homeassistant/home-assistant_v2.db{,-wal,-shm} rmk,
 
   # Runtime discovery, DNS, entropy, and temporary files.
   /etc/group r,
