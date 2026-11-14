@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.0.21
+
+First usable version.
+
+- New web UI with three areas: overview (Home Assistant version and
+  verification status, devices and entities, Recorder database, installation
+  fingerprint), device swap check and diagnostics. Light and dark mode,
+  usable on a phone.
+- Device swap check: compares the entities of an old and a new device,
+  counts stored history rows and flags pairs that need review. Read-only;
+  nothing is copied or changed. Includes the Core 0.0.19/0.0.20 pairing
+  rules.
+- Map the Home Assistant configuration read-only at `/homeassistant` so the
+  app can read the Recorder SQLite file. The AppArmor profile allows only
+  `home-assistant_v2.db` and its `-wal`/`-shm` files.
+- Add icon, logo, installation instructions and user documentation.
+- Requires Core image `0.0.21`.
+
 ## 0.0.18
 
 - Rename the internal Core package to `ha_db_toolbox` and the runtime
