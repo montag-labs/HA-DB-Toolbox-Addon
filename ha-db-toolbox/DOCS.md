@@ -96,6 +96,13 @@ to reset the app identity.
   default SQLite Recorder, or the database file is missing.
 - **Home Assistant version "noch nicht geprüft":** the Toolbox ships a fixed
   list of verified versions. An update of the app adds newer versions.
+- **"503: Service Unavailable" after restoring a backup:** the app is running,
+  but the Supervisor does not know its ingress token yet. This happens when
+  the app was restored onto a system where it was not installed and **Show in
+  sidebar** was off. Restarting the app does not help. Run
+  `ha supervisor restart` (or restart the Supervisor under **Settings →
+  System**) and open the web UI again. The installation identity is not
+  affected.
 - **AppArmor:** from a Home Assistant terminal app, read the host audit
   journal with `ha host logs -t audit -n 1000` and look for entries
   containing `apparmor="DENIED"` and the `ha_db_toolbox` profile. Any denial
